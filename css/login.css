@@ -17,3 +17,13 @@ h2{
 .green{
     color: lightgreen;
 }
+
+#sa{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sa input[type=password]{
+    margin-bottom: 15px;
+}

@@ -13,16 +13,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Euro2024 obstawianie</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/url.js"></script>
 </head>
 <body>
     <header>
-        <button onclick="gamescore()">Wyniki meczów</button>
-        <button onclick="typescore()">Wyniki typowania</button>
+        <button onclick="hyper('gamescore.php')">Wyniki meczów</button>
+        <button onclick="hyper('typescore.php')">Wyniki typowania</button>
         <?php
             if($_SESSION["type"]=="admin")    
-            echo '<button onclick="adminpanel()">Panel Admina</button>';
+            echo '<button onclick="hyper('."'adminpanel.php'".')">Panel Admina</button>';
         ?>
-        <button onclick="logout()">Wyloguj się</button>
+        <button onclick="hyper('php/logout.php')">Wyloguj się</button>
     </header>
     <main>
     <h1>Euro 2024 Obstawianie</h1>
@@ -30,6 +31,7 @@
     <form  action="php/type.php" method="POST">
             <?php
             $user_id = $_SESSION['id'] ;
+            if($user_id!=1){
                 require_once("php/connect.php");
 
                 $sql = "SELECT * FROM zaglosowane as z WHERE z.id_osoby=$user_id AND z.data = CURRENT_DATE";
@@ -68,6 +70,10 @@
                         echo '<h2 style="margin:20px"> Jutro nie ma żadnych meczów </h2>';
                     }
                 }
+            }
+            else{
+                echo '<h2 style="margin:20px"> Jako użytkownik sa nie możesz głosować </h2>';
+            }
 
 
                 
@@ -75,6 +81,5 @@
             ?>
     </form>
 </main>
-<script src="js/admin.js"></script>
 </body>
 </html>

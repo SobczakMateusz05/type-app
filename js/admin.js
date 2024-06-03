@@ -1,19 +1,14 @@
-function adminpanel(){
-    window.location.href="adminpanel.php";
-}
+function manage(a){
+    const manageBtn = document.getElementsByClassName("manageBtn");
+    const manage = document.getElementsByClassName("manage");
 
-function typing(){
-    window.location.href="typing.php";
-}
+    for (let i = 0; i < manageBtn.length; i++) {
+        manageBtn[i].classList.remove("active")
+    }
+    for (let i = 0; i < manage.length; i++) {
+        manage[i].classList.add("disable")
+    } 
 
-function gamescore(){
-    window.location.href="gamescore.php";
-}
-
-function typescore(){
-    window.location.href="typescore.php";
-}
-
-function logout(){
-    window.location.href="php/logout.php";
+    document.getElementById(a+"Btn").classList.add("active");
+    document.getElementById(a).classList.remove("disable")
 }
